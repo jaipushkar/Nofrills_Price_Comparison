@@ -1,0 +1,10 @@
+SELECT DISTINCT
+    a.product_id,
+    CAST(a.eprice AS FLOAT),
+    CAST(b.eprice AS FLOAT),
+    (CAST(a.eprice AS FLOAT) - CAST(b.eprice AS FLOAT)) AS diff
+FROM Backup_Nofrills_08_25_2023 AS a
+LEFT JOIN Backup_Nofrills_08_18_2023 AS b
+ON a.product_id = b.product_id AND a.zip = b.zip 
+WHERE a.zip = 'E2M 4X5'
+ORDER BY diff DESC;
